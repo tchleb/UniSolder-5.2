@@ -39,6 +39,7 @@ static UINT8 OldNAP;
 static int NapTicks;
 static int TipChangeTicks;
 static UINT8 FNAP;
+static int acdc_adv_view=0; //enable ac / dc in oled
 
 static union {
     UINT32 DW;
@@ -112,7 +113,7 @@ void OLEDTasks(){
     OLEDFlags.DW = 0;
     if(mainFlags.PowerLost){
         OLEDFlags.f.Message = 1;
-        OLEDMsg1 = "     POWER LOST";
+        OLEDMsg1 = " Power verloren";
         OLEDMsg2 = "";
     }
     else{
@@ -146,18 +147,18 @@ void OLEDTasks(){
                     }
                     else if(PV1->ShortCircuit || PV2->ShortCircuit){
                         OLEDFlags.f.Message=1;
-                        OLEDMsg1="       HEATER";
-                        OLEDMsg2="    SHORTCIRCUIT";
+                        OLEDMsg1="  Heizelement";
+                        OLEDMsg2="     Kurzschluss";
                     }
                     else if(PV1->NoSensor || PV2->NoSensor){
                         OLEDFlags.f.Message = 1;
-                        OLEDMsg1="       SENSOR";
-                        OLEDMsg2="        OPEN";
+                        OLEDMsg1="       Sensor";
+                        OLEDMsg2="       Offen";
                     }
                     else if(PV1->NoHeater || PV2->NoHeater){
                         OLEDFlags.f.Message=1;
-                        OLEDMsg1="       HEATER";
-                        OLEDMsg2="        OPEN";
+                        OLEDMsg1="    Heizelement";
+                        OLEDMsg2="         Offen";
                     }
                     else{
                         OLEDFlags.f.BigTemp = 1;
@@ -397,9 +398,14 @@ void OLEDTasks(){
         int i, p, df, 
             AVG = ADCAVG;
 
+        if(acdc_adv_view==1){
         OLEDPrint68(0, 7, mainFlags.ACPower ? "AC" : "DC", 2);
         OLEDPrint68(12, 7, &("FHQE")[PIDVars[0].Power], 1);// PIDVars[0].Power ? (PIDVars[0].Power == 1 ? "H": "Q"): "F", 1);
-
+        }
+        else{
+        OLEDPrint68(0, 7, PIDVars[0].Power ? (PIDVars[0].Power == 1 ? "1/2": "1/4"): "1/1", 3);
+        }
+        
         if(PV1->NoHeater || PV1->NoSensor || PV1->ShortCircuit || PV2->NoHeater || PV2->NoSensor || PV2->ShortCircuit){
             df = 0;
             p = 0;
@@ -473,12 +479,12 @@ void OLEDTasks(){
                 Y = (63 - 16) * 2;
                 DY =- 1;                                    
             }            
-            OLEDPrintXY816(X >> 1, Y >> 1, "HOT", 3);
+            OLEDPrintXY816(X >> 1, Y >> 1, "!!Heiss!!", 9);
         }
         else{
             if(X >= ((127 - 18) * 2)) DX = -1;
             if(Y >= ((63 - 8) * 2)) DY =- 1;                                    
-            OLEDPrintXY68(X >> 1, Y >> 1, "ZZZ", 3);
+            OLEDPrintXY68(X >> 1, Y >> 1, "zzZ", 3);
         }
         X += DX;
         Y += DY;        
@@ -543,7 +549,7 @@ void OLEDTasks(){
         int AVG = ADCAVG;
         if(IronPars.Config[1].SensorConfig.Type) AVG--;
 
-        OLEDPrint68(0,0,"INSTRUMENT INFO", 0);
+        OLEDPrint68(0,0,"Instrument Info", 0);
         
         OLEDPrint68(0, 2, "    ID:", 0);
         OLEDPrint68(0, 3, "  Pmax:", 0);

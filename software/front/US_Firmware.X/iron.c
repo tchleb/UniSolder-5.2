@@ -41,7 +41,7 @@ const t_SensorConfig NTC2252_B_1 = { //2252 ohm NTC on SENSEB and Vout1-
 const t_IronPars NoIronPars = {
     0, 
     {0x0000},
-    "NO INSTRUMENT           ",
+    "Kein Loetkolben         ",
     {
         { //t_IronConfig [0]
             { //t_SensorConfig

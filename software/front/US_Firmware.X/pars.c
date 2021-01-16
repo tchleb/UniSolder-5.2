@@ -13,36 +13,36 @@ void ParDispTemp(int par, int col, int row, int temp);
 void ParDispCF(int par, int col, int row, int num);
 
 const char * StrDispRot[]   = {"0   ", "180 "};
-const char * StrResume[]    = {"OFF ", "KEY ", "HOLD", "BOTH"};
+const char * StrResume[]    = {"Aus ", "+/- ", "Hal.", "Komb."};
 const char * StrButtons[]   = {"+/- ", "-/+ "};
-const char * StrOffOnAuto[] = {"OFF ", "ON  ", "AUTO"};
-const char * StrMenuUp[]    = {"KEY+", "KEY-"};
+const char * StrOffOnAuto[] = {"Aus ", "Ein ", "Auto"};
+const char * StrMenuUp[]    = {" + ", " - "};
 
 const unsigned char MenuOrder[] = {18,0,1,2,3,4,5,6,7,11,13,8,10,14,9,12,16,17,19};
 
 const t_ParDef ParDef[] = {
 //  NAME            DEF  MIN      MAX      IMMEDIATE SUFFIX STRINGS       DISPFUNC    
 
-    {"        T1 ", 125, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //0
-    {"        T2 ", 150, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //1
-    {"        T3 ", 175, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //2
-    {"  HOLDER T ", 150, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //3
-    {"   SLEEP T ", 125, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //4
-    {"     SLEEP ",  20,       0,     255, 0,          "s", 0,            &ParDispNumOff}, //5
-    {"  STAND-BY ",  30,       0,     255, 0,          "m", 0,            &ParDispNumOff}, //6
-    {"    HOLDER ",   2,       0,       2, 0,            0, StrOffOnAuto, &ParDispStr}, //7
-    {"   DEGREES ",   0,       0,       1, 1,            0, 0,            &ParDispCF}, //8
-    {"BRIGHTNESS ",  15,       1,      15, 1,            0, 0,            &ParDispNum}, //9
-    {"   BUTTONS ",   0,       0,       1, 0,            0, StrButtons,   &ParDispStr}, //10
-    {"   WAKE UP ",   0,       0,       3, 0,            0, StrResume,    &ParDispStr}, //11   
-    {"  ROTATION ",   0,       0,       1, 1,            0, StrDispRot,   &ParDispStr}, //12
-    {"SENSOR FLT ",   0,       0,     255, 0,            0, 0,            &ParDispNumOff}, //13
-    {" MENU DOWN ",   0,       0,       1, 0,            0, StrMenuUp,    &ParDispStr}, //14
-    {"     INPUT ",   0,       0,       4, 0,            0, 0,            0}, //15   
-    {" CALIBRATE ",   0,       0,       0, 0,            0, 0,            0}, //16
-    {" INST.INFO ",   0,       0,       0, 0,            0, 0,            0}, //17
-    {" TEMP.STEP ",   1,       1,      25, 0,            0, 0,            &ParDispTemp}, //18
-    {"   VERSION ",   0,       0,       0, 0,            0, 0,            0}, //19
+    {"    Temp 1 ", 125, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //0
+    {"    Temp 2 ", 150, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //1
+    {"    Temp 3 ", 175, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //2
+    {" Halter T. ", 150, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //3
+    {" Schlaf T. ", 125, MINTEMP, MAXTEMP, 0,            0, 0,            &ParDispTemp}, //4
+    {"  Schlafen ",  20,       0,     255, 0,          "s", 0,            &ParDispNumOff}, //5
+    {"   Standby ",  30,       0,     255, 0,          "m", 0,            &ParDispNumOff}, //6
+    {"    Halter ",   2,       0,       2, 0,            0, StrOffOnAuto, &ParDispStr}, //7
+    {"      Grad ",   0,       0,       1, 1,            0, 0,            &ParDispCF}, //8
+    {"  Kontrast ",  15,       1,      15, 1,            0, 0,            &ParDispNum}, //9
+    {"    Tasten ",   0,       0,       1, 0,            0, StrButtons,   &ParDispStr}, //10
+    {" Aufwachen ",   0,       0,       3, 0,            0, StrResume,    &ParDispStr}, //11   
+    {"  Rotation ",   0,       0,       1, 1,            0, StrDispRot,   &ParDispStr}, //12
+    {"Sensor FLT ",   0,       0,     255, 0,            0, 0,            &ParDispNumOff}, //13
+    {"  Menu Ri. ",   0,       0,       1, 0,            0, StrMenuUp,    &ParDispStr}, //14
+    {"   Eingabe ",   0,       0,       4, 0,            0, 0,            0}, //15   
+    {"  Kalibri. ",   0,       0,       0, 0,            0, 0,            0}, //16
+    {" Inst.Info ",   0,       0,       0, 0,            0, 0,            0}, //17
+    {"  Schritte ",   1,       1,      25, 0,            0, 0,            &ParDispTemp}, //18
+    {"   Version ",   0,       0,       0, 0,            0, 0,            0}, //19
 };
 
 void ParDispStr(int par, int col, int row, int num){
