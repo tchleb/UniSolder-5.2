@@ -53,7 +53,10 @@ OLEDC_EXTERN void OLEDPrintNumXY(int x, int y, int dec, int num, void* font, int
 OLEDC_EXTERN void OLEDPrintHex(int col, int row, int dec, unsigned int num, void* font, int startChar, int width, int height, int blank );
 OLEDC_EXTERN void OLEDPrint(int col, int row, const char * s, int num, void * font, int startChar, int width, int height, int blank);
 OLEDC_EXTERN void OLEDPrintXY(int col, int row, const char * s, int num, void * font, int startChar, int width, int height, int blank);
-
+OLEDC_EXTERN void show_bootLogo();
+OLEDC_EXTERN void show_sleepLogo();
+OLEDC_EXTERN void show_hotLogo();
+OLEDC_EXTERN void show_hotLogo();
 
 #define OLEDPrint68(col, row, s, num) OLEDPrint(col, row, s, num, font6x8, 32, 5, 1, 1)
 #define OLEDPrintXY68(x, y, s, num) OLEDPrintXY(x, y, s, num, font6x8, 32, 5, 1, 1)

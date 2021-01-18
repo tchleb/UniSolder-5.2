@@ -49,15 +49,19 @@ volatile pars_t         pars;
 
 volatile int Enc; //Rotary encoder position
 
-int main(void){
+static int numbers_adv_view=0; //disable the debugging numbers on the oled during start & operation
+
+int main(void){    
     int i;
     mcuInit1();
     SPKOFF;
-
+    
     OLEDInit();        
-    OLEDPrintNum816(0, 0, 2, 0);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 0);
+    OLEDUpdate();}
 
+    show_bootLogo(); 
+    
     mcuInit2();
         
     CalCh = 0;
@@ -108,27 +112,27 @@ int main(void){
     mcuInit3();
 
     IronInit();
-    OLEDPrintNum816(0, 0, 2, 31);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 31);
+    OLEDUpdate();}
     ISRInit();
-    OLEDPrintNum816(0, 0, 2, 32);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 32);
+    OLEDUpdate();}
     PIDInit();
-    OLEDPrintNum816(0, 0, 2, 33);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 33);
+    OLEDUpdate();}
     IOInit();
-    OLEDPrintNum816(0, 0, 2, 34);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 34);
+    OLEDUpdate();}
     MenuInit();
-    OLEDPrintNum816(0, 0, 2, 35);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 35);
+    OLEDUpdate();}
 
     if(mainFlags.ACPower){
         while(MAINS);
         while(!MAINS);
     }
-    OLEDPrintNum816(0, 0, 2, 36);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 36);
+    OLEDUpdate();}
     
     mcuDCTimerReset();
     
@@ -144,23 +148,23 @@ int main(void){
     I2CData.Gain.ui16=128;
     I2CData.Offset.ui16=128;
     I2CAddCommands(I2C_SET_CPOT | I2C_SET_GAINPOT | I2C_SET_OFFSET);
-    OLEDPrintNum816(0, 0, 2, 45);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 45);
+    OLEDUpdate();}
 
     LoadPars();
-    OLEDPrintNum816(0, 0, 2, 46);
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 46);
+    OLEDUpdate();}
 
     ISRStop();
-    OLEDPrintNum816(0, 0, 2, 47);    
-    OLEDUpdate();
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 47);    
+    OLEDUpdate();}
 
     mainFlags.PowerLost = 0;
     
     ISRStart();
-    OLEDPrintNum816(0, 0, 2, 48);
-    OLEDUpdate();
-    
+    if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 48);
+    OLEDUpdate();}
+      
     BeepTicks = 2;
 
     while(1){
