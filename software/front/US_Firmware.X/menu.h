@@ -24,7 +24,6 @@ typedef enum{
     SET_INPUT_TYPE,       /*input selection*/
     TIP_CHANGE,           /*tip change*/
     VERSION_INFO,         /*version information*/
-    DEBUG_SWITCH,         /*Debug Switch*/
     STANDBY = 0xFF        /*standby*/
 }T_MENU_MODE;
 
