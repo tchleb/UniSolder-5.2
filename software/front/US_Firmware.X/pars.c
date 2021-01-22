@@ -17,8 +17,9 @@ const char * StrResume[]    = {"Aus ", "+/- ", "Hal.", "Komb."};
 const char * StrButtons[]   = {"+/- ", "-/+ "};
 const char * StrOffOnAuto[] = {"Aus ", "Ein ", "Auto"};
 const char * StrMenuUp[]    = {" + ", " - "};
+const char * StrOffOn[]     = {"Aus ", "Ein "};
 
-const unsigned char MenuOrder[] = {18,0,1,2,3,4,5,6,7,11,13,8,10,14,9,12,16,17,19};
+const unsigned char MenuOrder[] = {18,0,1,2,3,4,5,6,7,11,13,8,10,14,9,12,16,17,19,20};
 
 const t_ParDef ParDef[] = {
 //  NAME            DEF  MIN      MAX      IMMEDIATE SUFFIX STRINGS       DISPFUNC    
@@ -43,6 +44,7 @@ const t_ParDef ParDef[] = {
     {" Inst.Info ",   0,       0,       0, 0,            0, 0,            0}, //17
     {"  Schritte ",   1,       1,      25, 0,            0, 0,            &ParDispTemp}, //18
     {"   Version ",   0,       0,       0, 0,            0, 0,            0}, //19
+    {"     Debug ",   1,       0,       1, 0,            0, StrOffOn,     &ParDispStr}, //20
 };
 
 void ParDispStr(int par, int col, int row, int num){

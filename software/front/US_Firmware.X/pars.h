@@ -51,8 +51,8 @@ typedef struct {
 #define NB_OF_MENU_PARAMS  (sizeof(MenuOrder) / sizeof(MenuOrder[0])
 
 #ifndef _PARS_C
-extern const char MenuOrder[19];
-extern const t_ParDef ParDef[20];
+extern const char MenuOrder[20];
+extern const t_ParDef ParDef[18]; //Menu default item
 extern void LoadPars(void);
 extern void SavePars();
 #endif

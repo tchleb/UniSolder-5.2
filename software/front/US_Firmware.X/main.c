@@ -60,7 +60,7 @@ int main(void){
     if(numbers_adv_view==1){OLEDPrintNum816(0, 0, 2, 0);
     OLEDUpdate();}
 
-    show_bootLogo(); 
+    show_bootLogo();
     
     mcuInit2();
         
