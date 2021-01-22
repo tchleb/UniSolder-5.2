@@ -603,7 +603,7 @@ void MenuTasks(){
                 for(i = 0; i < 3; i++){
                     BTicks[i].o = BTicks[i].n;
                     if(BTicks[i].n < 65535 )BTicks[i].n++;
-                    if(!(BTicks[i].n % 10)) BTicks[i].d = 1;
+                    if(!(BTicks[i].n % 30)) BTicks[i].d = 1;
                     //BTicks[i].d = (BTicks[i].n == 1) || ((BTicks[i].n > 25) && ((LISRTicks & 3) == 1));
                 }
                 if(!B2){BTicks[1].n = 0;BTicks[1].d = 0;}
