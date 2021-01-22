@@ -256,9 +256,6 @@ void OLEDTasks(){
                                 case 19: //Version info
                                     CMode=VERSION_INFO;
                                     break;
-                                case 20: //debug switch
-                                    CMode=DEBUG_SWITCH;
-                                    break;
                                 default:
                                     CMode=SET_PARAMS;
                                     break;
@@ -353,18 +350,6 @@ void OLEDTasks(){
                     }
                     OLEDFlags.f.Version = 1;
                     break;
-                  case DEBUG_SWITCH: //change variable for enable deubg
-                    ModeTicks = 250;
-                    if(BTicks[1].o && !BTicks[1].n){
-                        CMode = DEFAULT_MENU;
-                        break;
-                    }
-                    OLEDPrintNum816(0, 0, 3, 666); //Test
-                    OLEDUpdate();     
-                    _delay_ms(2000);
-                    break;
-                                      
-                    
                     
                 case STANDBY: //stand-by
                     if(((pars.WakeUp & 1) && BTicks[1].o <= 50 && BTicks[1].n > 50) ||
@@ -463,7 +448,7 @@ void OLEDTasks(){
     
     if(OLEDFlags.f.Pars){
         int i, par = CPar - CRow;
-        if(par < 0) par += NB_OF_MENU_PARAMS);
+        if(par < 0) par += NB_OF_MENU_PARAMS;
         for(i=0; i < 4; i++){
             int p = MenuOrder[par];
             OLEDPrint816(0, i * 2, ParDef[(UINT8)MenuOrder[(UINT8)par]].Name, 11);
@@ -478,7 +463,7 @@ void OLEDTasks(){
                 }
             }
             par++;
-            if(par >= NB_OF_MENU_PARAMS)) par -= NB_OF_MENU_PARAMS);
+            if(par >= NB_OF_MENU_PARAMS) par -= NB_OF_MENU_PARAMS;
         }        
     }
     
@@ -618,7 +603,7 @@ void MenuTasks(){
                 for(i = 0; i < 3; i++){
                     BTicks[i].o = BTicks[i].n;
                     if(BTicks[i].n < 65535 )BTicks[i].n++;
-                    if(!(BTicks[i].n % 10)) BTicks[i].d = 1;
+                    if(!(BTicks[i].n % 30)) BTicks[i].d = 1;
                     //BTicks[i].d = (BTicks[i].n == 1) || ((BTicks[i].n > 25) && ((LISRTicks & 3) == 1));
                 }
                 if(!B2){BTicks[1].n = 0;BTicks[1].d = 0;}
@@ -628,7 +613,7 @@ void MenuTasks(){
                     //if(BTicks[0].d) Enc += ((BTicks[0].n >> 6) + 1)<<2;
                     //if(BTicks[2].d) Enc -= ((BTicks[2].n >> 6) + 1)<<2;
                     if(BTicks[0].d) { Enc += 1; BTicks[0].d = 0;}
-                    if(BTicks[2].d) { Enc += 1; BTicks[2].d = 0;}
+                    if(BTicks[2].d) { Enc -= 1; BTicks[2].d = 0;}
                 }
                 else{
                     BTicks[0].o = 0;

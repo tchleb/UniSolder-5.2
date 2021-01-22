@@ -33,8 +33,10 @@ typedef union {
         UINT8 Cal;
         UINT8 Debug;
         UINT8 TempStep;                             //temperature step - 1=2C, 2=4C... 25=50C
+        UINT8 Version;                              //not used
+        UINT8 Dbg_menu;                             //additional debug menu
     };
-    UINT8 b[19];
+    UINT8 b[21];
 }pars_t;
 
 typedef struct {
@@ -48,11 +50,11 @@ typedef struct {
     void (*OLEDDispFunc)(int, int, int, int);
 }t_ParDef;
 
-#define NB_OF_MENU_PARAMS  (sizeof(MenuOrder) / sizeof(MenuOrder[0])
+#define NB_OF_MENU_PARAMS  (sizeof(MenuOrder) / sizeof(MenuOrder[0]))
 
 #ifndef _PARS_C
 extern const char MenuOrder[20];
-extern const t_ParDef ParDef[18]; //Menu default item
+extern const t_ParDef ParDef[21]; //Menu default item
 extern void LoadPars(void);
 extern void SavePars();
 #endif
